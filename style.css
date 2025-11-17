@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars */
+    background-color: #0a0a0a; /* Dark background */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0f0f0;
+}
+
+/* Container for p5 canvas to manage its positioning */
+#p5-canvas-container {
+    position: absolute; /* Allows positioning relative to body but behind text */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    display: block; /* Remove extra space below canvas */
+}
+
+/* MOODSCAPE Title Overlay */
+#moodscape-title {
+    position: relative; /* Relative to flow, but can use z-index */
+    font-size: 5em; /* Large text */
+    font-weight: bold;
+    color: #F0F0F0; /* Light text color */
+    text-shadow: 0 0 15px rgba(240, 240, 240, 0.5), 0 0 30px rgba(240, 240, 240, 0.2); /* Soft glow */
+    letter-spacing: 0.1em;
+    z-index: 10; /* Above canvas */
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px); /* Slightly below center */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    pointer-events: none; /* Allows clicks to pass through to canvas if needed */
+}
+
+#moodscape-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOODSCAPE Slogan Overlay */
+#moodscape-slogan {
+    position: relative;
+    font-size: 1.2em;
+    color: #B0C4DE; /* Light steel blue, subtly different from title */
+    margin-top: 10px; /* Space below title */
+    z-index: 10;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-out 0.5s, transform 1.5s ease-out 0.5s; /* Delay slogan fade-in */
+    pointer-events: none;
+}
+
+#moodscape-slogan.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Enter Button */
+#enter-button-container {
+    position: relative; /* Relative to flow, below slogan */
+    margin-top: 30px; /* Space between slogan and button */
+    z-index: 10; /* Above canvas */
+    opacity: 0; /* Hidden by default */
+    transform: translateY(20px);
+    transition: opacity 1.5s ease-out 1s, transform 1.5s ease-out 1s; /* Delay button fade-in */
+}
+
+#enter-button-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#enter-button {
+    padding: 15px 40px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0a0a0a; /* Dark text for contrast */
+    background-color: #FFFFFF; /* Light steel blue */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(176, 196, 222, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+}
+
+#enter-button:hover {
+    background-color: #A0B0C8; /* Slightly darker on hover */
+    box-shadow: 0 0 20px rgba(176, 196, 222, 0.6);
+    transform: translateY(-2px);
+}
+
+#enter-button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 10px rgba(176, 196, 222, 0.3);
+}
+
+/* Utility class to hide/show elements with transitions */
+.hidden {
+    opacity: 0;
+    pointer-events: none; /* Disable interaction when hidden */
+}
+.visible {
+    opacity: 1;
+    pointer-events: auto; /* Enable interaction when visible */
+}
